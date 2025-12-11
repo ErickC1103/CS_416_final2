@@ -7,5 +7,5 @@ urlpatterns = [
     path('ticketmaster/', include('TicketMaster.urls'),name='ticketmaster'),#ticketmaster app
     path('accounts/', include('Accounts.urls'),name='accounts'),# account app
 # Redirect root URL to accounts homepage
-    path('', RedirectView.as_view(url='/accounts/', permanent=False)),
+    path('', RedirectView.as_view(url='/ticketmaster/', permanent=False)),
 ]
