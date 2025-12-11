@@ -8,4 +8,4 @@ class ViewerAdmin(admin.ModelAdmin):
     readonly_fields = ('timestamp',)
 admin.site.register(Viewer,ViewerAdmin)
 
-# Register your models here.
+
