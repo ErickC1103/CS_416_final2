@@ -1,5 +1,5 @@
 from django import forms
-from .models import WishlistItem, Event
+from .models import WishlistItem
 
 class TicketForm(forms.ModelForm):
     class Meta:
