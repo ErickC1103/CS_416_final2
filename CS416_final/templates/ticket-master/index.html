@@ -1,0 +1,96 @@
+{% extends "ticket-master/base.html" %}
+{% block body %}
+    <div class="container-fluid  bg-dark">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h1 class="text-white lead text-center my-4 mx-auto display-4">Ticketmaster</h1>
+            </div>
+            <div class="col-12">
+                <p class="text-white text-center lead fw-bold display-6">Quickly find tickets around you</p>
+            </div>
+            <div class="col-lg-8 mb-3">
+                <form class="row justify-content-center mb-1" action = "{% url 'index' %}" method="post">
+                    <label for="genre" class="visually-hidden">Genre</label>
+                    <label for="city" class="visually-hidden">City</label>
+                    <datalist id="Genre-Options">
+                        <option value="Music">
+                        <option value="Sports">
+                        <option value="Theater">
+                        <option value="Comedy">
+                        <option value="Concerts">
+                        <option value="Arts & Theater">
+                        <option value="Dance">
+                        <option value="Family">
+                    </datalist>
+
+                    <div class="input-group">
+                        {% csrf_token %}
+                        <input type="text" name="genre" list="Genre-Options" class="form-control" id="genre" placeholder="Type to search by genre">
+                        <input type="text" name="city" class="form-control" id="city" placeholder="Enter a city e.g Hartford">
+                        <input type="submit" id="search-button" class="btn btn-primary" value="SEARCH">
+                    </div>
+
+                </form>
+                {% comment %} alert placeholder {% endcomment %}
+                {% for message in messages %}
+                    <div id="alert-placeholder" class="container">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert">
+                        {{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+                </div>
+
+
+
+            </div>
+
+        </div>
+        {% comment %}
+    placeholder for results
+    {% endcomment %}
+        <div id="results-placeholder">
+            {% if events %}
+                <div class="container-lg container-fluid bg-white py-2 px-3 my-3 mx-auto" id="result-cont">
+                    <div class="row justify-content-center py-2">
+                        <div class="col-12" id="results">
+                        <h2 class="text-secondary">{{ events|length }} events found</h2>
+                            {% for event in events %}
+                                <section class="shadow">
+                                    <div class="card mb-3">
+                                        <div class="row g-0 align-items-center">
+                                            <div class="col-lg-5 col-12">
+                                                <img src="{{event.image}}" class="img-fluid rounded-start" alt="...">
+                                            </div>
+                                            <div class="col-lg-5 col-6">
+                                                <div class="card-body">
+                                                    <h1 class="">{{event.title}}</h1>
+                                                    <h2 class="card-text text-secondary mb-2"><i class="bi bi-geo-alt-fill"></i>{{event.venue}}</h2>
+                                                    <p class="card-text ">{{event.address}}</p>
+                                                    <p class="card-text">{{event.city}},{{event.state}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2 col-6">
+                                                <div class="card-body text-end">
+                                                    <h5 class="card-title text-primary-emphasis">{{event.event_date}}</h5>
+                                                    <p class="card-text text-primary-emphasis">{{event.event_time}}</p>
+                                                    <a href="{{ events.ticket_link }}"><button type="button" class="btn btn-sm mb-2 btn-outline-primary"><i class="bi bi-ticket-perforated"></i> Find tickets</button></a>
+                                                    <a href="{% url 'add_to_wishlist' event.id %}" class="btn btn-sm btn-outline-primary">Add to wishlist</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            {% endif %}
+        </div>
+
+{% endblock %}

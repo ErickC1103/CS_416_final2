@@ -1,0 +1,14 @@
+{# Login webpage #}
+{% extends "ticket-master/base.html" %}
+{% load crispy_forms_tags %} 
+{% block body %}
+    <div class="container my-3">
+        <h1>Login</h1>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" value="Login" class="btn btn-primary"><i class="fa-solid fa-address-book"></i> Login</button>
+        </form>
+    </div>
+
+{% endblock %}

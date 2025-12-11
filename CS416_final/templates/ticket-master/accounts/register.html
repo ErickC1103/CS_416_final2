@@ -1,0 +1,15 @@
+
+{% extends "ticket-master/base.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+    
+    <div class="container my-3">
+        <h1>Register</h1>
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-dark"><i class="fa-solid fa-address-card"></i> Register</button>
+        </form>
+    </div>
+ 
+{% endblock %}

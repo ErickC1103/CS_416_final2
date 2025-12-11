@@ -1,0 +1,14 @@
+{# Logout Page #}
+{% extends "ticket-master/base.html" %}
+{% block body %}
+    <div class="container my-3">
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <h3>Are you sure that you want to log out?</h3>
+            <button type="submit" class="btn btn-warning me-2">Logout</button>
+            <a href="{% url 'index' %}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Go Back</a>
+        </form>
+    </div>
+
+
+{% endblock %}

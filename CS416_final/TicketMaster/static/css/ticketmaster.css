@@ -1,0 +1,49 @@
+:root
+{
+    --color_white: #ffffff;
+}
+/* Dark mode for the entire body */
+body.dark-mode {
+    background-color: #121212 !important;
+    color: var(--color_white) !important;
+}
+
+/* Dark mode for the containers */
+body.dark-mode .container-fluid,
+body.dark-mode .card
+{
+    background-color: #1e1e1e !important;
+    color: var(--color_white) !important;
+    .text-primary-emphasis
+    {
+     color: #d5d2c4 !important; /* your new color */
+    }
+}
+
+/* Dark mode for the inputs and nav */
+body.dark-mode input.form-control,
+body.dark-mode nav {
+    background-color: #2c2c2c !important;
+    color: var(--color_white) !important;
+}
+body.dark-mode input::placeholder
+{
+    color: #67675f;
+    opacity:1;
+}
+/* Links and buttons */
+body.dark-mode a,
+body.dark-mode .btn {
+    color: #e1dfe3 !important;
+
+}
+body.dark-mode .btn
+{
+    background-color:black;!important
+}
+
+/* Markers and form text */
+body.dark-mode li, body.dark-mode .form-text
+{
+    color:var(--color_white);
+}

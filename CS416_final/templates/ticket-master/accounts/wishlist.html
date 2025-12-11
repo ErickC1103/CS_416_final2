@@ -1,0 +1,43 @@
+{% extends "ticket-master/base.html" %}
+{% block body %}
+    <div class="container my-3">
+        <h2>My Wishlist</h2>
+
+        {% for item in items %}
+            <div class="container my-3">
+                <div class="row g-0">
+                    <div class="col-7">
+                        <div class="card shadow">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ item.event.title }}</h5>
+                                        <h6 class="card-subtitle mb-2">{{ item.event.date }}</h6>
+                                        <p class="card-text">{{ item.event.status }}</p>
+                                        <p class="card-text">{{ item.event.location }}</p>
+                                        <a href="{% url 'remove_from_wishlist' item.id %}" class="btn btn-sm btn-outline-danger">Remove</a>
+                                        <a href="{{ item.event.ticket_url }}" class="btn btn-sm btn-outline-primary">Get Tickets</a>
+
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <img src="{{ item.event.image_url }}" class="img-fluid rounded-start" alt="...">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mx-1">
+                        <p class="card-text">Amount of tickets: {{ item.tickets }} </p>
+                        <a href="{% url 'update_tickets' item.id %}" class="btn btn-sm btn-outline-warning">Update tickets</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>Your wishlist is empty.</p>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
